@@ -10,10 +10,9 @@ receives the message, nothing happens.</p>
   <script type="syntaxhighlighter" class="brush: ruby">
     describe "any_instance.stub" do
       it "returns the specified value on any instance of the class" do
-        String.any_instance.stub(:foo).and_return(:return_value)
-
-        str = "sample string"
-        expect(str.foo).to eq(:return_value)
+        customer = Customer.new
+        expect_any_instance_of(Customer).to receive(:foo).and_return(:return_value)
+        expect(customer.foo).to eq(:return_value)
       end
     end
   </script>

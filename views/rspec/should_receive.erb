@@ -20,7 +20,6 @@
   <p>For a negative expectation</p>
 
   <script type="syntaxhighlighter" class="brush: ruby">
-    network_double.stub(:ping).and_return(false)
     expect(network_double).not_to receive(:open_connection)
   </script>
 </section>

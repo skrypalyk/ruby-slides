@@ -11,11 +11,15 @@
   <script type="syntaxhighlighter" class="brush: ruby">
     expect(double).to receive(:msg).with(no_args())
     expect(double).to receive(:msg).with(any_args())
-    expect(double).to receive(:msg).with(1, kind_of(Numeric), "b") #2nd argument can be any kind of Numeric
-    expect(double).to receive(:msg).with(1, boolean(), "b") #2nd argument can be true or false
-    expect(double).to receive(:msg).with(1, /abc/, "b") #2nd argument can be any String matching the submitted Regexp
-    expect(double).to receive(:msg).with(1, anything(), "b") #2nd argument can be anything at all
+    #2nd argument can be any kind of Numeric
+    expect(double).to receive(:msg).with(1, kind_of(Numeric), "b")
+    #2nd argument can be true or false
+    expect(double).to receive(:msg).with(1, boolean(), "b")
+    #2nd argument can be any String matching the submitted Regexp
+    expect(double).to receive(:msg).with(1, /abc/, "b")
+    #2nd argument can be anything at all
+    expect(double).to receive(:msg).with(1, anything(), "b")
+    #2nd argument can be object that responds to #abs and #div
     expect(double).to receive(:msg).with(1, duck_type(:abs, :div), "b")
-                        #2nd argument can be object that responds to #abs and #div
   </script>
 </section>

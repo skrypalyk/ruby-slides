@@ -4,22 +4,16 @@
   <p>The <strong>stub_chain</strong> method lets you to stub a chain of methods in one statement - and there is no need to stub each method in the dependency chain represented by a chain of messages to different objects.</p>
 
   <script type="syntaxhighlighter" class="brush: ruby">
-    Article.recent.published.authored_by(params[:author_id])
+    Event.recent.published
   </script>
   <br/>
   <script type="syntaxhighlighter" class="brush: ruby">
-    recent = double()
-    published = double()
-    authored_by = double()
-    article = double()
-
-    Article.stub(:recent).and_return(recent)
-    recent.stub(:published).and_return(published)
-    published.stub(:authored_by).and_return(article)
-  </script>
-  <br/>
-  <script type="syntaxhighlighter" class="brush: ruby">
-    article = double()
-    Article.stub_chain(:recent, :published, :authored_by).and_return(article)
+    describe Event
+      describe '.home' do
+        events = [Event.new]
+        expect(Event).to receive_message_chain(:recent, :published) { events }
+        expect(Event.home).to eq(events)
+      end
+    end
   </script>
 </section>
